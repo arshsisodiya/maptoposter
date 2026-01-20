@@ -174,3 +174,8 @@ input[type="range"] {
   color: #a1a1aa;
   animation: softPulse 1.4s ease-in-out infinite;
 }
+.theme-description {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #a1a1aa;
+}

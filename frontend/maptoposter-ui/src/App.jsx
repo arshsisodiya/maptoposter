@@ -8,6 +8,25 @@ export default function App() {
   const [distance, setDistance] = useState(18000);
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
+  const THEME_DESCRIPTIONS = {
+  feature_based: "Classic black & white map with clear road hierarchy",
+  gradient_roads: "Smooth gradient shading for roads and areas",
+  contrast_zones: "High contrast highlighting dense urban areas",
+  noir: "Pure black background with white roads",
+  midnight_blue: "Navy background with elegant gold roads",
+  blueprint: "Architectural blueprint technical drawing style",
+  neon_cyberpunk: "Dark theme with electric pink and cyan highlights",
+  warm_beige: "Vintage sepia tones with warm beige background",
+  pastel_dream: "Soft, muted pastel color palette",
+  japanese_ink: "Minimalist black ink wash inspired by Japanese art",
+  forest: "Deep greens and sage tones inspired by forests",
+  ocean: "Blues and teals inspired by coastal cities",
+  terracotta: "Mediterranean warmth with earthy terracotta tones",
+  sunset: "Warm oranges and pinks like a city at sunset",
+  autumn: "Burnt oranges and reds inspired by fall season",
+  copper_patina: "Oxidized copper look with artistic patina",
+  monochrome_blue: "Single blue color family with tonal variations",
+};
 
   const generatePoster = async () => {
     setLoading(true);
@@ -59,12 +78,17 @@ export default function App() {
 
           <label>Theme</label>
           <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-            <option value="feature_based">Feature Based</option>
-            <option value="noir">Noir</option>
-            <option value="blueprint">Blueprint</option>
-            <option value="neon_cyberpunk">Neon Cyberpunk</option>
-            <option value="warm_beige">Warm Beige</option>
+            {Object.keys(THEME_DESCRIPTIONS).map((key) => (
+              <option key={key} value={key}>
+                {key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+            </option>
+            ))}
           </select>
+
+          <p className="theme-description">
+          {THEME_DESCRIPTIONS[theme]}
+          </p>
+
 
           <br /><br />
 
