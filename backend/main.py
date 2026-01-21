@@ -59,8 +59,12 @@ def generate_poster(req: PosterRequest):
         return FileResponse(
             output_path,
             media_type=media_type,
-            filename=os.path.basename(output_path)
+            filename=os.path.basename(output_path),
+            headers={
+                "Access-Control-Expose-Headers": "Content-Disposition"
+            }
         )
+
 
     except Exception as e:
         import traceback
