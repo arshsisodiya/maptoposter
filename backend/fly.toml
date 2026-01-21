@@ -1,0 +1,31 @@
+app = "maptoposter-api"
+
+primary_region = "bom"  # India region (Mumbai)
+
+kill_signal = "SIGINT"
+kill_timeout = 10
+
+[build]
+  builder = "paketobuildpacks/builder:base"
+
+[env]
+  PORT = "8080"
+  PYTHONUNBUFFERED = "1"
+  MPLCONFIGDIR = "/tmp/matplotlib"
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  [services.concurrency]
+    type = "requests"
+    hard_limit = 1
+    soft_limit = 1
